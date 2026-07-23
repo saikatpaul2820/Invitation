@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>An Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Parisienne&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Link to external JavaScript -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="stage">
+  <div class="envelope-wrap" id="envelopeWrap">
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
+      <div class="flap"></div>
+      <div class="seal"><span id="sealInitial">?</span></div>
+    </div>
+    <div class="hint">Click to open</div>
+  </div>
+
+  <!-- STEP 1: DATE -->
+  <div class="card" id="cardDate">
+    <div class="step-label">Step 1 of 3</div>
+    <div class="step-track">
+      <div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div>
+    </div>
+    <p class="to-line" id="toLine1">Dear —,</p>
+    <h1>First, pick a day<br>It's for you</h1>
+    <div class="date-field">
+      <div class="date-flourish">♡</div>
+      <div class="calendar" id="calendar">
+        <div class="cal-header">
+          <button class="cal-nav" id="calPrev" onclick="changeMonth(-1)">‹</button>
+          <div class="cal-month" id="calMonthLabel"></div>
+          <button class="cal-nav" id="calNext" onclick="changeMonth(1)">›</button>
+        </div>
+        <div class="cal-weekdays">
+          <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
+        </div>
+        <div class="cal-days" id="calDays"></div>
+      </div>
+      <div class="range-note" id="rangeNote"></div>
+    </div>
+    <button class="btn-primary" id="dateNext" disabled onclick="goTo('cardLocation', 2)">Continue</button>
+  </div>
+
+  <!-- STEP 2: LOCATION -->
+  <div class="card" id="cardLocation">
+    <div class="step-label">Step 2 of 3</div>
+    <div class="step-track">
+      <div class="step-dot done"></div><div class="step-dot active"></div><div class="step-dot"></div>
+    </div>
+    <h1>Now, choose a place</h1>
+    <div class="options" id="locationOptions"></div>
+    <button class="btn-primary" id="locationNext" disabled onclick="goTo('cardTime', 3)">Continue</button>
+  </div>
+
+  <!-- STEP 3: TIME -->
+  <div class="card" id="cardTime">
+    <div class="step-label">Step 3 of 3</div>
+    <div class="step-track">
+      <div class="step-dot done"></div><div class="step-dot done"></div><div class="step-dot active"></div>
+    </div>
+    <h1>And finally, a time</h1>
+    <div class="options time-grid" id="timeOptions"></div>
+    <button class="btn-primary" id="timeNext" disabled onclick="showSummary()">Continue</button>
+  </div>
+
+  <!-- STEP 4: SUMMARY / CONFIRM -->
+  <div class="card" id="cardSummary">
+    <div class="step-label">Almost done</div>
+    <h1>Thanks for your time</h1>
+    <div class="summary" id="summaryBody"></div>
+    <button class="btn-primary" id="confirmBtn" onclick="confirmDate()">See you then!</button>
+    <br><br>
+    <button class="btn-text" onclick="goTo('cardTime', 3)">Go back and change something</button>
+  </div>
+
+  <!-- STEP 5: DONE -->
+  <div class="card" id="cardDone">
+    <h1 id="doneHeading">Wonderful. It's a date. 🤍</h1>
+    <div class="summary" id="doneBody"></div>
+    <div class="signature" id="doneSignature"></div>
+  </div>
+</div>
+
+</body>
+</html>
